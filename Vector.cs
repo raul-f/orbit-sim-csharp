@@ -8,7 +8,7 @@ namespace orbit_simulator
 
         public Vector(double[] coordinates)
         {
-            Coordinates = coordinates;
+            Coordinates = (double[])coordinates.Clone();
         }
 
         public double GetNorm() {
@@ -22,7 +22,7 @@ namespace orbit_simulator
         }
 
         public Vector GetVersor() {
-            double[] unitVector = Coordinates;
+            double[] unitVector = (double[])Coordinates.Clone();
             double norm = GetNorm();
 
             for (int index = 0; index < unitVector.Length; index++) {
@@ -44,8 +44,8 @@ namespace orbit_simulator
             return sum;
         }
 
-        public Vector MultiplyByScalar(double scalar) {
-            double[] coords = Coordinates;
+        public Vector MultiplyScalar(double scalar) {
+            double[] coords = (double[])Coordinates.Clone();
             for (int index = 0; index < coords.Length; index++)
             {
                 coords[index] *= scalar;
@@ -55,8 +55,8 @@ namespace orbit_simulator
         }
 
         public Vector AddVector(Vector addend) {
-            double[] coords = Coordinates;
-            for (int index = 0; index < coords.Length; index++)
+            double[] coords = (double[])Coordinates.Clone();
+            for (int index = 0; index < coords.Length; index++) 
             {
                 coords[index] += addend.Coordinates[index];
             }

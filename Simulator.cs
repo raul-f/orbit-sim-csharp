@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace orbit_simulator
 {
@@ -6,12 +7,27 @@ namespace orbit_simulator
     {
         static void Main(string[] args)
         {
-            // Console.WriteLine("One more lap around the sun.");
-            // Console.WriteLine($"{new Vector(new double[3] {1, 0, 1})}");
-            // Console.WriteLine($"{new Vector(new double[3] {2, 0, 1}).DotProduct(new Vector(new double[3] {3, 0, 1}))}");
-            // Console.WriteLine($"{new Vector(new double[3] {3, 4, 0}).GetVersor()}");
-            // Console.WriteLine($"{new Vector(new double[3] {2, 2, 0}).MultiplyByScalar(2).MultiplyByScalar(2)}");
-            // Console.WriteLine($"{new Vector(new double[3] {2, 5, 0}).AddVector(new Vector(new double[3] {8, 5, 10})).GetVersor()}");
+            CelestialBody sun = new CelestialBody(
+                1.989e30,
+                new Vector(new double[3] { 0, 0, 0 }),
+                new Vector(new double[3] { 0, 0, 0 }),
+                "Sun"
+            );
+            CelestialBody earth = new CelestialBody(
+                5.972e24,
+                new Vector(new double[3] { 3.844e8, 0, 0 }),
+                new Vector(new double[3] { 0, 3e6, 10 }),
+                "Earth"
+            );
+
+            ManyBodiedSystem mbs = new ManyBodiedSystem(new CelestialBody[] {sun, earth});
+
+            List<Dictionary<string, Vector>> speeds = mbs.CalculateSpeeds(4);
+
+            Console.WriteLine($"Initial Position: {{earth: {earth.InitPosition}, sun: {sun.InitPosition}}}");
+            Console.WriteLine($"Current Position: {{earth: {earth.Position}, sun: {sun.Position}}}");
+
+            Console.ReadLine();
         }
     }
 }

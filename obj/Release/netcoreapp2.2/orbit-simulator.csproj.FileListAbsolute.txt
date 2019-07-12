@@ -1,0 +1,10 @@
+C:\Users\Raul\Documents\study\csharp\code\orbit-simulator\bin\Release\netcoreapp2.2\orbit-simulator.deps.json
+C:\Users\Raul\Documents\study\csharp\code\orbit-simulator\bin\Release\netcoreapp2.2\orbit-simulator.runtimeconfig.json
+C:\Users\Raul\Documents\study\csharp\code\orbit-simulator\bin\Release\netcoreapp2.2\orbit-simulator.runtimeconfig.dev.json
+C:\Users\Raul\Documents\study\csharp\code\orbit-simulator\bin\Release\netcoreapp2.2\orbit-simulator.dll
+C:\Users\Raul\Documents\study\csharp\code\orbit-simulator\bin\Release\netcoreapp2.2\orbit-simulator.pdb
+C:\Users\Raul\Documents\study\csharp\code\orbit-simulator\obj\Release\netcoreapp2.2\orbit-simulator.csproj.CoreCompileInputs.cache
+C:\Users\Raul\Documents\study\csharp\code\orbit-simulator\obj\Release\netcoreapp2.2\orbit-simulator.AssemblyInfoInputs.cache
+C:\Users\Raul\Documents\study\csharp\code\orbit-simulator\obj\Release\netcoreapp2.2\orbit-simulator.AssemblyInfo.cs
+C:\Users\Raul\Documents\study\csharp\code\orbit-simulator\obj\Release\netcoreapp2.2\orbit-simulator.dll
+C:\Users\Raul\Documents\study\csharp\code\orbit-simulator\obj\Release\netcoreapp2.2\orbit-simulator.pdb
