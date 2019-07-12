@@ -5,23 +5,35 @@ namespace orbit_simulator
     class CelestialBody
     {
 
-        public decimal Mass;
-        public double[] InitPosition = new double[3];
-        public double[] Position = new double[3];
-        public double[] InitSpeed = new double[3];
-        public double[] Speed = new double[3];
-        public double[] Acceleration = new double[3];
-        public const decimal Gravitational = 6.67408E-11M;
+        public double Mass;
+        public Vector InitPosition;
+        public Vector Position;
+        public Vector InitSpeed;
+        public Vector Speed;
+        public Vector Acceleration;
+        private const double grav = 6.67408E-11;
+        public double Gravitational
+        {
+            get
+            {
+                return grav;
+            }
+        }
 
-        public CelestialBody(decimal mass, double[] initPosition, double[] initSpeed)
+        public CelestialBody(double mass, Vector initPosition, Vector initSpeed)
         {
             Mass = mass;
             Position = InitPosition = initPosition;
             Speed = InitSpeed = initSpeed;
         }
 
-        public double[] UpdateAcceleration(double[] position) {
-            return new double[1] {0};
+        public Vector UpdateAcceleration(CelestialBody other)
+        {
+            double distSq = Math.Pow(Position.AddVector(other.Position.MultiplyByScalar(-1)).GetNorm(), 2);
+            double norm = (other.Mass * Gravitational * Mass) / distSq;
+            Vector accs = other.Position.GetVersor().MultiplyByScalar(-1);
+
+            return new Vector(new double[3] {0, 0, 0});
         }
     }
 }

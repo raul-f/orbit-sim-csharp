@@ -45,21 +45,23 @@ namespace orbit_simulator
         }
 
         public Vector MultiplyByScalar(double scalar) {
-            for (int index = 0; index < Coordinates.Length; index++)
+            double[] coords = Coordinates;
+            for (int index = 0; index < coords.Length; index++)
             {
-                Coordinates[index] *= scalar;
+                coords[index] *= scalar;
             }
 
-            return this;
+            return new Vector(coords);
         }
 
         public Vector AddVector(Vector addend) {
-            for (int index = 0; index < Coordinates.Length; index++)
+            double[] coords = Coordinates;
+            for (int index = 0; index < coords.Length; index++)
             {
-                Coordinates[index] += addend.Coordinates[index];
+                coords[index] += addend.Coordinates[index];
             }
 
-            return this;
+            return new Vector(coords);
         }
 
         public override string ToString() => $"({string.Join(", ", Coordinates)})";
