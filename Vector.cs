@@ -11,6 +11,11 @@ namespace orbit_simulator
             Coordinates = (double[])coordinates.Clone();
         }
 
+        public Vector(Vector origin)
+        {
+            Coordinates = (double[])origin.Coordinates.Clone();
+        }
+
         public double GetNorm() {
             double sum = 0;
 

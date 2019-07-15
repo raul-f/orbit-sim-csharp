@@ -22,7 +22,7 @@ namespace orbit_simulator
 
             ManyBodiedSystem mbs = new ManyBodiedSystem(new CelestialBody[] {sun, earth});
 
-            List<Dictionary<string, Vector>> speeds = mbs.CalculateSpeeds(4);
+            List<Dictionary<string, Vector>> speeds = mbs.CalculateSpeeds((int)4e4);
 
             Console.WriteLine($"Initial Position: {{earth: {earth.InitPosition}, sun: {sun.InitPosition}}}");
             Console.WriteLine($"Current Position: {{earth: {earth.Position}, sun: {sun.Position}}}");

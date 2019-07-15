@@ -32,7 +32,7 @@ namespace orbit_simulator
             ResultingForce = new Vector(new double[3] { 0, 0, 0 });
             Name = name;
         }
-        public Vector UpdateResultingForce(CelestialBody other)
+        public Vector UpdateResultingForce(CelestialBody other, bool verbose = false)
         {
             Vector _this = Position, _other = other.Position;
             Vector relPos = _this.AddVector(_other.MultiplyScalar(-1));
@@ -41,41 +41,61 @@ namespace orbit_simulator
             Vector direction = relPos.GetVersor().MultiplyScalar(-1);
             Vector force = direction.MultiplyScalar(norm);
 
-            Console.WriteLine($"--- Start of {Name} ---");
-            Console.WriteLine($"Influence: {other.Name}");
-            Console.WriteLine($"{Name} relPos: {relPos}");
-            Console.WriteLine($"{Name} distSq: {distSq}");
-            Console.WriteLine($"{Name} norm: {norm}");
-            Console.WriteLine($"{Name} direction: {direction}");
-            Console.WriteLine($"{Name} force: {force}");
-            Console.WriteLine($"--- End of {Name} ---\n");
+            if (verbose)
+            {
+                Console.WriteLine($"--- Start of {Name}, UpdateResultingForce ---");
+                Console.WriteLine($"Influence: {other.Name}");
+                Console.WriteLine($"{Name} relPos: {relPos}");
+                Console.WriteLine($"{Name} distSq: {distSq}");
+                Console.WriteLine($"{Name} norm: {norm}");
+                Console.WriteLine($"{Name} direction: {direction}");
+                Console.WriteLine($"{Name} force: {force}");
+                Console.WriteLine($"--- End of {Name} ---\n");
+            }
 
             ResultingForce = ResultingForce.AddVector(force);
 
             return ResultingForce;
         }
 
-        public Vector UpdateAcceleration()
+        public Vector UpdateAcceleration(bool verbose = false)
         {
             Acceleration = ResultingForce.MultiplyScalar(1 / Mass);
 
-            // Console.WriteLine($"{this.Name} acc: {Acceleration}");
-            // Console.WriteLine($"{this.Name} relPos: {relPos}");
+            if (verbose)
+            {
+                Console.WriteLine($"--- Start of {Name}, UpdateAcceleration ---");
+                Console.WriteLine($"{Name} acceleration: {Acceleration}");
+                Console.WriteLine($"--- End of {Name} ---\n");
+            }
 
             return Acceleration;
         }
 
-        public Vector UpdateSpeed()
+        public Vector UpdateSpeed(bool verbose = false)
         {
             Speed = Speed.AddVector(Acceleration);
+
+            if (verbose)
+            {
+                Console.WriteLine($"--- Start of {Name}, UpdateSpeed ---");
+                Console.WriteLine($"{Name} speed: {Speed}");
+                Console.WriteLine($"--- End of {Name} ---\n");
+            }
+
             return Speed;
         }
 
-        public Vector UpdatePosition()
+        public Vector UpdatePosition(bool verbose = false)
         {
             Position = Position.AddVector(Speed);
 
-            // Console.WriteLine($"{this.Name} pos: {Position}");
+            if (verbose)
+            {
+                Console.WriteLine($"--- Start of {Name}, UpdatePosition ---");
+                Console.WriteLine($"{Name} position: {Position}");
+                Console.WriteLine($"--- End of {Name} ---\n");
+            }
 
             return Position;
         }

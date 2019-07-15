@@ -13,13 +13,16 @@ namespace orbit_simulator
             Bodies = (CelestialBody[])bodies.Clone();
         }
 
-        public List<Dictionary<string, Vector>> CalculateSpeeds(int cicles)
+        public List<Dictionary<string, Vector>> CalculateSpeeds(int cicles, bool verbose = false)
         {
             List<Dictionary<string, Vector>> speeds = new List<Dictionary<string, Vector>>();
 
             for (int i = 0; i < cicles; i++)
             {
-                Console.WriteLine($"----- Start of cicle {i} -----\n");
+                if (verbose)
+                {
+                    Console.WriteLine($"----- Start of cicle {i} -----\n");
+                }
 
                 for (int k = 0; k < Bodies.Length; k++)
                 {
@@ -27,12 +30,21 @@ namespace orbit_simulator
                     for (int j = 0; j < Bodies.Length; j++)
                     {
                         CelestialBody influence = Bodies[j];
-                        if (i != j)
+
+                        if (verbose)
+                        {
+                            Console.WriteLine($"cb({k}): {cb.Name}\ninfluence({j}): {influence.Name}\n");
+                        }
+
+                        if (k != j)
                         {
                             // Console.WriteLine($"cb({i}): {cb.Name}\ninfluence({j}): {influence.Name}");
                             cb.UpdateResultingForce(influence);
                         }
-                        Console.WriteLine($"cb({i}): {cb.Name}\ninfluence({j}): {influence.Name}\n");
+                        else if (verbose)
+                        {
+                            Console.WriteLine($"Same body - skipped this cicle");
+                        }
                     }
                     cb.UpdateAcceleration();
                     cb.UpdateSpeed();
@@ -46,7 +58,11 @@ namespace orbit_simulator
                     speeds[i].Add(cb.Name, new Vector(cb.Speed.Coordinates));
                 }
 
-                Console.WriteLine($"----- End of cicle {i} -----\n");
+                if (verbose)
+                {
+                    Console.WriteLine($"----- End of cicle {i} -----\n");
+                }
+
             }
 
             return speeds;
